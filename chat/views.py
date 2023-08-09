@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from chat.models import Room , Message
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 def index(request):
         return render(request,'index.html')
 
@@ -39,4 +39,9 @@ def send(request):
 
 
 
+
+def getMessages(request,room):
+    room_details=Room.objects.get(name=room)
+    messages=Message.objects.filter(room__icontains=room_details.id)
+    return JsonResponse({'messages':list(messages.values())})
 
