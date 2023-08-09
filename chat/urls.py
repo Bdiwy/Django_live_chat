@@ -3,8 +3,9 @@ from .import views
 
 urlpatterns = [
     path('',views.index ,name='index'),
-    path('<str:room>',views.room ,name='room'),
+    path('<str:room>/',views.room ,name='room'),
     path('check',views.check ,name='check'),
+    path('send',views.send ,name='send'),
 
 
 ]
